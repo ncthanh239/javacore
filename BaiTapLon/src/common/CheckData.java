@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package common;
+
+/**
+ *
+ * @author Hieu Trung
+ */
+public class CheckData {
+    static boolean flag = true;
+
+    public boolean ktraTenNV(String tenNV) {
+        for (int i = 0; i < 10; i++) {
+            if (tenNV.contains(i + "") == true || tenNV.equalsIgnoreCase("")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean ktraSoDT(String soDT) {
+        boolean check = false;
+        try {
+            int soDienThoai = Integer.parseInt(soDT);
+            if (soDT.startsWith(0 + "") == false) {
+                System.err.println("Số điện thoại phải bắt đầu bằng số 0!");
+                check = true;
+            } else if (soDT.length() < 10) {
+                System.err.print("Số điện thoại phải lớn hơn 10 số!");
+                check = true;
+            } else if (soDT.length() > 11) {
+                System.err.println("Số điện thoại phải nhỏ hơn 11 số!");
+                check = true;
+            }
+        }catch (NumberFormatException ex){
+            System.err.println("Số điện thoại không được nhập chữ!");
+            check = true;
+        }catch (Exception ex){
+            System.err.println("Fail"+ ex.getMessage());
+            check = true;
+        }
+        return true;
+    }
+    public boolean ktraEmail(String email) {
+        String dinhDangEmail = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        boolean ktEmail = email.matches(dinhDangEmail);
+        if (ktEmail == false) {
+            System.err.println("Email sai, nhập lại theo dạng abc@domain.com");
+            return true;
+        }
+        return false;
+
+    }
+    
+}
